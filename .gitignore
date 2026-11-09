@@ -1,0 +1,5 @@
+data/
+runs/*/adapter/
+__pycache__/
+.ipynb_checkpoints/
+*.zip
