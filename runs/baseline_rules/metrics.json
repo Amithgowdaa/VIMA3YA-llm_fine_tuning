@@ -1,0 +1,39 @@
+{
+ "name": "baseline_rules",
+ "config": {
+  "name": "baseline_rules",
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "mode": "rules",
+  "data": "clean",
+  "bits": 4,
+  "rank": 16,
+  "lr": 0.0002,
+  "epochs": 3,
+  "train_limit": 0,
+  "batch_size": 8,
+  "token_budget": 1500,
+  "test_only": false,
+  "test_shard": "0/1",
+  "max_len": 1500,
+  "seed": 42,
+  "predict_test": false,
+  "limit": 80,
+  "eval_batch": 16
+ },
+ "model": "Qwen/Qwen2.5-3B-Instruct",
+ "base_params": 3397103616,
+ "eval_minutes": 4.43,
+ "exact_match": 0.025,
+ "mean_field_acc": 0.2078125,
+ "json_valid": 0.2875,
+ "fields": {
+  "category": 0.1875,
+  "priority": 0.1125,
+  "amount_paise": 0.2625,
+  "txn_date": 0.1375,
+  "txn_id": 0.225,
+  "channel": 0.2625,
+  "language": 0.25,
+  "needs_human": 0.225
+ }
+}

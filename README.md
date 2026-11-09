@@ -2,7 +2,7 @@
 
 - **Base model:** `Qwen/Qwen2.5-3B-Instruct` (Qwen license; ungated on Hugging Face)
 - **Loaded in 4-bit:** yes (NF4, double quantization, float16 compute)
-- **Best result:** TBD_RESULT
+- **Best result:** 93.0% exact match and 98.8% mean field accuracy on all 200 dev tickets (batched scoring of the saved adapter)
 - **Hardware:** trained on a local RTX 5070 (8 GB), because T4 sessions were unavailable on Colab and Kaggle. See `report.md`.
 
 ## Reproducing predictions

@@ -1,0 +1,70 @@
+#### final start 20:53:16
+base params 3.40B | trainable 29.9M
+rows 1338 | usable 1306 | skipped 32
+epoch 1 step 50/380 loss 0.4348 elapsed 1.4m
+epoch 1 step 100/380 loss 0.2303 elapsed 2.5m
+epoch 1 step 150/380 loss 0.1574 elapsed 3.7m
+== epoch 1 mean loss 0.1260
+epoch 2 step 200/380 loss 0.0020 elapsed 5.1m
+epoch 2 step 250/380 loss 0.0040 elapsed 6.5m
+epoch 2 step 300/380 loss 0.0034 elapsed 7.9m
+epoch 2 step 350/380 loss 0.0029 elapsed 9.4m
+== epoch 2 mean loss 0.0027
+DONE final
+#### final end 21:07:13 exit 0
+#### test start 21:07:13
+DONE shard 0/1
+#### test end 21:50:55 exit 0
+#### FINAL READY
+#### exp_base not started: past cutoff
+#### exp_raw not started: past cutoff
+#### exp_rank8 not started: past cutoff
+#### exp_aug not started: past cutoff
+#### baseline_base not started: past cutoff
+#### baseline_rules not started: past cutoff
+#### exp_16bit not started: past cutoff
+#### ALL DONE 2026-11-09 21:50:55.054705
+#### exp_base start 21:51:16
+base params 3.40B | trainable 29.9M
+rows 200 | usable 193 | skipped 7
+== epoch 1 mean loss 0.4690
+torch.AcceleratorError: CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+#### exp_base end 21:52:31 exit 1
+#### exp_raw start 21:52:31
+base params 3.40B | trainable 29.9M
+rows 200 | usable 196 | skipped 4
+torch.AcceleratorError: CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+#### exp_raw end 21:53:13 exit 1
+#### exp_rank8 start 21:53:13
+base params 3.40B | trainable 15.0M
+rows 200 | usable 193 | skipped 7
+== epoch 1 mean loss 0.5534
+epoch 2 step 50/56 loss 0.0331 elapsed 1.3m
+== epoch 2 mean loss 0.0313
+DONE exp_rank8
+#### exp_rank8 end 21:56:14 exit 0
+#### exp_aug start 21:56:14
+base params 3.40B | trainable 29.9M
+rows 310 | usable 299 | skipped 11
+torch.AcceleratorError: CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+#### exp_aug end 21:57:20 exit 1
+#### baseline_base start 21:57:20
+DONE baseline_base
+#### baseline_base end 21:59:02 exit 0
+#### baseline_rules start 21:59:02
+DONE baseline_rules
+#### baseline_rules end 22:03:43 exit 0
+#### exp_16bit start 22:03:43
+base params 3.40B | trainable 29.9M
+rows 200 | usable 193 | skipped 7
+epoch 1 step 50/194 loss 0.3756 elapsed 0.4m
+== epoch 1 mean loss 0.2107
+epoch 2 step 100/194 loss 0.0540 elapsed 0.9m
+epoch 2 step 150/194 loss 0.0216 elapsed 1.3m
+== epoch 2 mean loss 0.0155
+DONE exp_16bit
+#### exp_16bit end 22:08:06 exit 0
+#### ALL DONE 2026-11-09 22:08:06.340087

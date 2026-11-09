@@ -1,0 +1,43 @@
+{
+ "name": "final",
+ "config": {
+  "name": "final",
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "mode": "train",
+  "data": "clean",
+  "bits": 4,
+  "rank": 16,
+  "lr": 0.0002,
+  "epochs": 2,
+  "train_limit": 0,
+  "batch_size": 8,
+  "token_budget": 1500,
+  "test_only": false,
+  "test_shard": "0/1",
+  "max_len": 1500,
+  "seed": 42,
+  "predict_test": false,
+  "limit": 0,
+  "eval_batch": 16
+ },
+ "model": "Qwen/Qwen2.5-3B-Instruct",
+ "base_params": 3397103616,
+ "train_minutes": 10.29,
+ "peak_gpu_gb": 6.45,
+ "trainable": 29933568,
+ "train_rows": 1306,
+ "eval_minutes": 2.88,
+ "exact_match": 0.93,
+ "mean_field_acc": 0.9875,
+ "json_valid": 1.0,
+ "fields": {
+  "category": 0.99,
+  "priority": 0.955,
+  "amount_paise": 1.0,
+  "txn_date": 0.985,
+  "txn_id": 1.0,
+  "channel": 1.0,
+  "language": 1.0,
+  "needs_human": 0.97
+ }
+}
