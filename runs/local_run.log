@@ -93,3 +93,11 @@ rows 200 | usable 196 | skipped 4
 #### exp_raw end 22:19:01 exit timeout
 #### exp_aug skipped
 #### ALL DONE 2026-11-09 22:19:01.024526
+#### exp_raw start 22:19:39
+base params 3.40B | trainable 29.9M
+rows 200 | usable 196 | skipped 4
+== epoch 1 mean loss 0.3682
+epoch 2 step 50/80 loss 0.0343 elapsed 1.1m
+== epoch 2 mean loss 0.0326
+DONE exp_raw
+#### exp_raw end 22:23:26 exit 0
