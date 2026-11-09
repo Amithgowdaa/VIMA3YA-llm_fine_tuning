@@ -68,3 +68,28 @@ epoch 2 step 150/194 loss 0.0216 elapsed 1.3m
 DONE exp_16bit
 #### exp_16bit end 22:08:06 exit 0
 #### ALL DONE 2026-11-09 22:08:06.340087
+#### exp_base start 22:08:55
+base params 3.40B | trainable 29.9M
+rows 200 | usable 193 | skipped 7
+== epoch 1 mean loss 0.3430
+epoch 2 step 50/76 loss 0.0287 elapsed 0.9m
+== epoch 2 mean loss 0.0246
+DONE exp_base
+#### exp_base end 22:12:27 exit 0
+#### exp_4bit_500 start 22:12:27
+base params 3.40B | trainable 29.9M
+rows 200 | usable 193 | skipped 7
+epoch 1 step 50/194 loss 0.4859 elapsed 0.5m
+== epoch 1 mean loss 0.2703
+epoch 2 step 100/194 loss 0.0626 elapsed 0.9m
+epoch 2 step 150/194 loss 0.0298 elapsed 1.3m
+== epoch 2 mean loss 0.0236
+DONE exp_4bit_500
+#### exp_4bit_500 end 22:17:37 exit 0
+#### exp_raw start 22:17:37
+base params 3.40B | trainable 29.9M
+rows 200 | usable 196 | skipped 4
+== epoch 1 mean loss 0.3684
+#### exp_raw end 22:19:01 exit timeout
+#### exp_aug skipped
+#### ALL DONE 2026-11-09 22:19:01.024526

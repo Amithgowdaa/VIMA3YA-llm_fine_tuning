@@ -38,20 +38,28 @@ Every check went from hypothesis, to code that measures it, to reading real exam
 - **Inference:** chat template, plain `model.generate(do_sample=False, max_new_tokens=200)`, whitespace stripping only, one ticket at a time, on the adapter reloaded from disk. The base model's `generation_config` applies `repetition_penalty=1.05`, and I left that default in place.
 
 ## Parts B and D: results
-Experiments use one change at a time from `exp_base`: 200 sampled training rows, 2 epochs, batched scoring on the first 80 dev rows. **These are small-sample comparisons, so differences of a few points are not meaningful.** Batched scoring can differ slightly from one-at-a-time scoring.
+Experiments use one change at a time from `exp_base`: 200 sampled training rows, 2 epochs, batched scoring on the first 80 dev rows. **These are small-sample comparisons, so differences of a few points are not meaningful.** Memory limits differ between some runs, as noted below. Batched scoring can differ slightly from one-at-a-time scoring.
 
 | Run | What changed | Dev exact | Dev field acc | Peak GPU GB | Train min |
 |---|---|---|---|---|---|
 | baseline_base | no fine-tuning, fixed prompt | 0.0% | 0.0% | - | - |
 | baseline_rules | no fine-tuning, rules in prompt | 2.5% | 20.8% | - | - |
-| exp_base | reference: clean, 4-bit, rank 16 | did not complete | | | |
+| exp_base | reference: clean, 4-bit, rank 16 | 41.2% | 86.9% | 5.46 | 1.43 |
 | exp_raw | 1. raw data instead of clean | did not complete | | | |
-| exp_16bit | 2. 16-bit LoRA (max_len 500, batch 2, to fit 8 GB) | 77.5% | 95.0% | 7.02 | 1.65 |
+| exp_4bit_500 | 2a. 4-bit with max_len 500, batch 2 (match for 2b) | 51.2% | 89.7% | 4.42 | 1.69 |
+| exp_16bit | 2b. 16-bit with max_len 500, batch 2, to fit 8 GB | 77.5% | 95.0% | 7.02 | 1.65 |
 | exp_rank8 | 3. rank 8 instead of 16 | 32.5% | 84.7% | 6.28 | 1.43 |
 | exp_aug | 4. own idea: SCHEMA-based augmentation | did not complete | | | |
 | final | final: all clean rows, 2 epochs, all 200 dev | 93.0% | 98.8% | 6.45 | 10.29 |
 
-Conclusions: added once the remaining runs finish.
+**Part D is incomplete, and I want that to be clear.** `exp_raw` and `exp_aug` ran out of GPU memory, and time ran out before they could be re-run, so raw-versus-clean and the own idea have no result. Only the 16-bit comparison and the rank comparison are measured.
+
+**Conclusions, with caution given 200 training rows and 80 dev tickets:**
+- **Baselines:** the untrained model scored 0.0% exact, and 2.5% with the rules in the prompt. Writing the rules into the prompt did not produce the required format.
+- **16-bit vs 4-bit (2a and 2b, matched at `max_len` 500 and batch 2):** 16-bit reached 77.5% exact against 51.2% for 4-bit, at 7.02 GB against 4.42 GB. I expected little difference, so this needs confirming at full size. Scoring batch size differed between these two runs.
+- **Rank 8 vs 16:** 32.5% against 41.2%. Rank 8 was run with `token_budget` 1500 and the reference with 1000, after the reference ran out of memory at 1500, so this is not a strict one-change comparison.
+- **Amount of data matters most:** the final model on all usable rows reached 93.0%, far above any 200-row run.
+- The final model is 4-bit because that configuration was fixed before these results. The 16-bit result is the first thing I would test at full size.
 
 ## Part E: error analysis (final model, dev)
 All 200 dev tickets: **93.0% exact match, 98.8% mean field accuracy, 100% valid JSON** (batched scoring of the saved adapter). This configuration was fixed in advance, but dev was also used to debug the labeller, so read the score as somewhat optimistic.
@@ -82,7 +90,7 @@ All 14 failures:
 
 ## With one more week
 1. **Thresholds first:** this is the largest error group. Add training rows spread across the ₹5,000 and ₹50,000 boundaries, then test this change on its own at full size.
-2. Run every experiment on a real T4 with the full data and all 200 dev rows, with several seeds, since the current comparisons are small-sample.
+2. Complete raw-versus-clean and the augmentation experiment, then run every experiment on a real T4 with the full data and all 200 dev rows, with several seeds, since the current comparisons are small-sample.
 3. Audit category labels by hand, because the rules could not check them.
 4. Restore `max_len` 2,300 so the longest email threads are used in training, and add examples of two-digit years and Hinglish repeat-contact phrases.
 
